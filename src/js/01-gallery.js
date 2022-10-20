@@ -13,7 +13,7 @@ function createImgMarkup(gallery) {
     .map(({ preview, original, description }) => {
       return `
     <div class="gallery__item">
-        <a class="gallery__link">
+        <a class="gallery__link" href="${original}"">
             <img
             class="gallery__image"
             src="${preview}"
@@ -27,11 +27,16 @@ function createImgMarkup(gallery) {
 }
 
 function onImgContainerClick(evt) {
+  evt.preventDefault();
   const isImgEl = evt.target.classList.contains('gallery__image');
 
   if (!isImgEl) {
     return;
   }
 
-  console.log(evt.target.dataset);
+  const instance = basicLightbox.create(`
+    <img src='${evt.target.dataset.source}' width="800" height="600">
+`);
+
+  instance.show();
 }
