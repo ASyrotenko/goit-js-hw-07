@@ -6,12 +6,14 @@ const imgMarkup = createImgMarkup(galleryItems);
 
 imgContainer.insertAdjacentHTML('beforeend', imgMarkup);
 
+imgContainer.addEventListener('click', onImgContainerClick);
+
 function createImgMarkup(gallery) {
   return gallery
     .map(({ preview, original, description }) => {
       return `
     <div class="gallery__item">
-        <a class="gallery__link" href="${original}">
+        <a class="gallery__link">
             <img
             class="gallery__image"
             src="${preview}"
@@ -22,4 +24,14 @@ function createImgMarkup(gallery) {
     </div>`;
     })
     .join('');
+}
+
+function onImgContainerClick(evt) {
+  const isImgEl = evt.target.classList.contains('gallery__image');
+
+  if (!isImgEl) {
+    return;
+  }
+
+  console.log(evt.target.dataset);
 }
