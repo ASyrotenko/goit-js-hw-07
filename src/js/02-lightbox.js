@@ -25,6 +25,11 @@ function createImgMarkup(gallery) {
     .join('');
 }
 
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 function onImgContainerClick(evt) {
   evt.preventDefault();
 }
